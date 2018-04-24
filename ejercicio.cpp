@@ -10,25 +10,25 @@ void copia(double *un, double *uv, double n);
 void inicializa(double *uv, double dx, double n, double sigma)
 {
 	double x;
-	for (int i = 0, i < n, i ++)
+	for (int i = 0; i < n; i ++)
 	{
 		x = i*dx;
 		uv[i] = exp(-pow(x,2)/sigma);
 	}
 }
 
-void evolucion(double *un, double *uv, double dx, double dt, double n, double D);
+void evolucion(double *un, double *uv, double dx, double dt, double n, double D)
 {
-	for (int i = 0;, i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		if(u[i]<=0.5)
+		if(un[i]<=0.5)
 		{
 			un[i] = uv[i-1] + D*dt/(pow(dx,2))*(uv[i]-2*uv[i-1]+uv[i-2]);  
 		}
 	}	
 }
 
-void copia(double *un, double *uv, double n);
+void copia(double *un, double *uv, double n)
 {
 	for(int i = 0; i < n; i++)
 	{
@@ -50,14 +50,17 @@ int main()
 	double sigma = 0.5;
 	inicializa(uv, dx, n, sigma);
 	double t = 0.0;
+	double x = 0.0;
 	while (t<T)
 	{
-		evolucion(un, uv, dx, dt, n, D)
-		copia(un, uv, n)
-		t += dt
+		evolucion(un, uv, dx, dt, n, D);
+		copia(un, uv, n);
+		t += dt;
 	}
-	for(int i = 0; i < n, i ++)
+	for(int i = 0; i < n; i ++)
 	{
+		t = i*dt;
+		x = i*dx;
 		cout << un[i] << " " << t << " " << x << endl;
 	}
 
